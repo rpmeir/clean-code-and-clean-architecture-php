@@ -1,25 +1,35 @@
 <?php
 
+function tudoIgual($str) {
+    $igual = true;
+    for($i = 0; $i <= strlen($str); $i++){
+        $igual = $igual && (substr($str, $i, 1) == substr($str, 0, 1));
+    }
+    return $igual;
+}
+
 function validate($str) {
 
-if (str !== null && str !== undefined) {
-    if (str.length >= 11 || str.length <= 14){  
-        str=str.replace('.','').replace('.','').replace('-','').replace(" ","");  
-        if (!str.split("").every(c => c === str[0])) {
+if ($str !== null && $str !== '') {
+    if (strlen($str) >= 11 || strlen($str) <= 14){
+        $str = str_replace('.','',$str) ;
+        $str = str_replace('-','',$str) ;
+        $str = str_replace(' ','',$str) ; 
+        if (!tudoIgual($str)) {
             try{  
-                let     d1, d2;  
+                $d1 = null;, d2;  
                 let     dg1, dg2, rest;  
                 let     digito;  
                     let     nDigResult;  
                 d1 = d2 = 0;  
                 dg1 = dg2 = rest = 0;  
                     
-                for (let nCount = 1; nCount < str.length -1; nCount++) {  
-                    // if (isNaN(parseInt(str.substring(nCount -1, nCount)))) {
+                for (let nCount = 1; nCount < $str.length -1; nCount++) {  
+                    // if (isNaN(parseInt($str.sub$string(nCount -1, nCount)))) {
                     // 	return false;
                     // } else {
 
-                        digito = parseInt(str.substring(nCount -1, nCount));  							
+                        digito = parseInt($str.substring(nCount -1, nCount));  							
                         d1 = d1 + ( 11 - nCount ) * digito;  
                         d2 = d2 + ( 12 - nCount ) * digito;  
                     // }
@@ -33,7 +43,7 @@ if (str !== null && str !== undefined) {
                     dg2 = 0;  
                 else  
                     dg2 = 11 - rest;  
-                let nDigVerific = str.substring(str.length-2, str.length);  
+                let nDigVerific = $str.substring($str.length-2, $str.length);  
                 nDigResult = "" + dg1 + "" + dg2;  
                 return nDigVerific == nDigResult;
             }catch (e){  
